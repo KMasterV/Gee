@@ -1,0 +1,6 @@
+datasource:
+  host: localhost
+  port: 3306
+  database: goessential
+  username: root
+  password: root
