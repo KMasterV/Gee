@@ -4,6 +4,7 @@ import (
 	"Gee/model"
 	"fmt"
 
+	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -12,11 +13,11 @@ var DB *gorm.DB
 
 func InitDB() *gorm.DB {
 	// driverName := "mysql"
-	host := "localhost"
-	port := "3306"
-	database := "gorm"
-	username := "root"
-	password := "root"
+	host := viper.GetString("datasource.host")
+	port := viper.GetString("datasource.port")
+	database := viper.GetString("datasource.database")
+	username := viper.GetString("datasource.username")
+	password := viper.GetString("datasource.password")
 	args := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, host, port, database)
 
 	db, err := gorm.Open(mysql.Open(args), &gorm.Config{})
